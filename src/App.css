@@ -1,14 +1,23 @@
+#root {
+    overflow: scroll;
+    height:fit-content;
+}
+
 main {
    font-family: Arial, Helvetica, sans-serif;
    width: 50%;
    background-color: powderblue;
-   position: fixed;
 }
 
 .InputComponent {
     text-align: center;
     margin: auto;
     background-color: lightcoral
+}
+
+#result {
+    background-color: aquamarine;
+    top: 0px;
 }
 
 input {

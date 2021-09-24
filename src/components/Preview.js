@@ -1,7 +1,7 @@
 import React from "react";
-import PersonalInfo from "./PersonalInfo";
-import WorkItem from "./WorkItem";
-import EducationItem from "./EducationItem";
+import DisplayPersonal from "./DisplayPersonal";
+import DisplayWork from "./DisplayWork";
+import DisplayEducation from "./DisplayEducation";
 
 class Preview extends React.Component {
     constructor(props) {
@@ -18,21 +18,21 @@ class Preview extends React.Component {
             <div> 
                 <div className="header">
                     { (this.state.personalInfo !== "" ) 
-                    ? <PersonalInfo item={this.state.personalInfo} /> 
+                    ? <DisplayPersonal personalInfo={this.state.personalInfo} /> 
                     : null }
+                </div>
+                <div className="work">
+                    <DisplayWork workExperience={this.state.workExperience} />
+                </div>
+                <div className="education">
+                    <DisplayEducation educationExperience={this.state.educationExperience} />
                 </div>
             </div>
         )
-
-       /* <div className="work">
-                    {this.state.workExperience.map(item => <WorkItem item={item}/>)}
-                </div>
-                <div className="education">
-                    {this.state.educationExperience.length > 0
-                    ? this.state.educationExperience.map((item) => <EducationItem item={item}/>)
-                    : null }
-                </div>*/
     }
 }
+
+
+
 
 export default Preview;
