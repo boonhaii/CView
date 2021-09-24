@@ -14,7 +14,7 @@ class WorkItem extends React.Component {
 
     render() {
         return (
-            <div>
+           <div>
             { this.state.organization !== "" && this.state.city !== ""
                 ? <p> {this.state.organization}, {this.state.city} </p>
                 : <p> {this.state.organization} {this.state.city} </p> }

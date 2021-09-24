@@ -11,14 +11,16 @@ class App extends React.Component {
             numWork: 1,
             numEducation: 1,
             workExperience: [
-                { position: "",
+                { isRemoved: false,
+                position: "",
                 organization: "",
                 city: "",
                 startDate: "",
                 endDate: "" }
             ], // Array of objects which encapsulates work experience details.
             educationExperience: [
-                { institution: "",
+                { isRemoved: false,
+                institution: "",
                 city: "",
                 qualifications: "",
                 major: "",
@@ -36,6 +38,8 @@ class App extends React.Component {
         this.newEduForm = this.newEduForm.bind(this);
         this.handleChangeWork = this.handleChangeWork.bind(this);
         this.handleChangeEdu = this.handleChangeEdu.bind(this);
+        this.removeWorkItem = this.removeWorkItem.bind(this);
+        this.removeEduItem = this.removeEduItem.bind(this);
     }
                 
     handleChangePersonalInfo(event) {
@@ -62,7 +66,7 @@ class App extends React.Component {
     newEduForm(event) {
         event.preventDefault();
         this.setState(prevState => {
-            const newEduTemplate = { 
+            const newEduTemplate = {
                 institution: "",
                 city: "",
                 qualifications: "",
@@ -78,17 +82,31 @@ class App extends React.Component {
         })
     }
 
-    /*removeWorkItem(event) {
+    removeWorkItem(event) {
         event.preventDefault();
         const {id} = event.target;
         this.setState(prevState => {
-            const updatedWorkExperience = [...prevState.workExperience];
-            updatedWorkExperience.splice(id, 1);
+            let updatedWorkExperience = [...prevState.workExperience];
+            updatedWorkExperience.splice(id, 1)
             return {
-                workExperience: updatedWorkExperience
+                workExperience: updatedWorkExperience,
+                numWork: prevState.numWork - 1
             }
         })
-    }*/
+    }
+
+    removeEduItem(event) {
+        event.preventDefault();
+        const {id} = event.target;
+        this.setState(prevState => {
+            let updatedEduExperience = [...prevState.educationExperience];
+            updatedEduExperience.splice(id, 1)
+            return {
+                educationExperience: updatedEduExperience,
+                numEducation: prevState.numEducation - 1
+            }
+        })
+    }
 
     handleChangeWork(event) {
         const {name, value, id} = event.target;
@@ -149,13 +167,16 @@ class App extends React.Component {
                         {[...Array(this.state.numWork).keys()]
                                 .map(index => { 
                                     return (
-                                        <form id="workform">
-                                            <input type="text" id={index} name="position" value={this.state.workExperience[index].position} onChange={this.handleChangeWork} placeholder="Position" ></input> <br />
-                                            <input type="text" id={index} name="organization" value={this.state.workExperience[index].organization} onChange={this.handleChangeWork} placeholder="Organization" ></input> <br />
-                                            <input type="text" id={index} name="city" value={this.state.workExperience[index].city} onChange={this.handleChangeWork} placeholder="City"></input> <br />
-                                            <input type="text" id={index} name="startDate" value={this.state.workExperience[index].startDate} onChange={this.handleChangeWork} placeholder="Start Date" ></input> <br />
-                                            <input type="text" id={index} name="endDate" value={this.state.workExperience[index].endDate} onChange={this.handleChangeWork} placeholder="End Date"></input> <br />
-                                        </form>
+                                       <div>
+                                            <form id="workform">
+                                                <input type="text" id={index} name="position" value={this.state.workExperience[index].position} onChange={this.handleChangeWork} placeholder="Position" ></input> <br />
+                                                <input type="text" id={index} name="organization" value={this.state.workExperience[index].organization} onChange={this.handleChangeWork} placeholder="Organization" ></input> <br />
+                                                <input type="text" id={index} name="city" value={this.state.workExperience[index].city} onChange={this.handleChangeWork} placeholder="City"></input> <br />
+                                                <input type="text" id={index} name="startDate" value={this.state.workExperience[index].startDate} onChange={this.handleChangeWork} placeholder="Start Date" ></input> <br />
+                                                <input type="text" id={index} name="endDate" value={this.state.workExperience[index].endDate} onChange={this.handleChangeWork} placeholder="End Date"></input> <br />
+                                            </form>
+                                            <button id={index} onClick={this.removeWorkItem}> Remove </button>
+                                        </div>
                                     )
                                 })}
                         <button onClick={this.newWorkForm}> Add </button>
@@ -166,14 +187,17 @@ class App extends React.Component {
                         {[...Array(this.state.numEducation).keys()]
                                 .map(index => { 
                                     return (
-                                        <form id="eduform">
-                                            <input type="text" id={index} name="institution" value={this.state.educationExperience[index].institution} onChange={this.handleChangeEdu} placeholder="Institution" ></input> <br />
-                                            <input type="text" id={index} name="city" value={this.state.educationExperience[index].city} onChange={this.handleChangeEdu} placeholder="City" ></input> <br />
-                                            <input type="text" id={index} name="qualifications" value={this.state.educationExperience[index].qualifications} onChange={this.handleChangeEdu} placeholder="Qualifications"></input> <br />
-                                            <input type="text" id={index} name="major" value={this.state.educationExperience[index].major} onChange={this.handleChangeEdu} placeholder="Major"></input> <br />
-                                            <input type="text" id={index} name="startDate" value={this.state.educationExperience[index].startDate} onChange={this.handleChangeEdu} placeholder="Start Date" ></input> <br />
-                                            <input type="text" id={index} name="endDate" value={this.state.educationExperience[index].endDate} onChange={this.handleChangeEdu} placeholder="End Date"></input> <br />
-                                        </form>
+                                        <div>
+                                            <form id="eduform">
+                                                <input type="text" id={index} name="institution" value={this.state.educationExperience[index].institution} onChange={this.handleChangeEdu} placeholder="Institution" ></input> <br />
+                                                <input type="text" id={index} name="city" value={this.state.educationExperience[index].city} onChange={this.handleChangeEdu} placeholder="City" ></input> <br />
+                                                <input type="text" id={index} name="qualifications" value={this.state.educationExperience[index].qualifications} onChange={this.handleChangeEdu} placeholder="Qualifications"></input> <br />
+                                                <input type="text" id={index} name="major" value={this.state.educationExperience[index].major} onChange={this.handleChangeEdu} placeholder="Major"></input> <br />
+                                                <input type="text" id={index} name="startDate" value={this.state.educationExperience[index].startDate} onChange={this.handleChangeEdu} placeholder="Start Date" ></input> <br />
+                                                <input type="text" id={index} name="endDate" value={this.state.educationExperience[index].endDate} onChange={this.handleChangeEdu} placeholder="End Date"></input> <br />
+                                            </form>
+                                            <button id={index} onClick={this.removeEduItem}> Remove </button>
+                                        </div>
                                     )
                                 })}
                         <button onClick={this.newEduForm}> Add </button>

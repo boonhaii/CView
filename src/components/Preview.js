@@ -2,6 +2,7 @@ import React from "react";
 import DisplayPersonal from "./DisplayPersonal";
 import DisplayWork from "./DisplayWork";
 import DisplayEducation from "./DisplayEducation";
+import uniqid from "uniqid";
 
 class Preview extends React.Component {
     constructor(props) {
@@ -22,10 +23,10 @@ class Preview extends React.Component {
                     : null }
                 </div>
                 <div className="work">
-                    <DisplayWork workExperience={this.state.workExperience} />
+                    <DisplayWork key={uniqid()} workExperience={this.state.workExperience} />
                 </div>
                 <div className="education">
-                    <DisplayEducation educationExperience={this.state.educationExperience} />
+                    <DisplayEducation key={uniqid()} educationExperience={this.state.educationExperience} />
                 </div>
             </div>
         )
