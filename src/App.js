@@ -11,16 +11,14 @@ class App extends React.Component {
             numWork: 1,
             numEducation: 1,
             workExperience: [
-                { isRemoved: false,
-                position: "",
+                { position: "",
                 organization: "",
                 city: "",
                 startDate: "",
                 endDate: "" }
             ], // Array of objects which encapsulates work experience details.
             educationExperience: [
-                { isRemoved: false,
-                institution: "",
+                {institution: "",
                 city: "",
                 qualifications: "",
                 major: "",
@@ -33,13 +31,14 @@ class App extends React.Component {
             phoneNumber: ""
         }
         this.handleChangePersonalInfo = this.handleChangePersonalInfo.bind(this);
-        this.handleClearAll = this.handleClearAll.bind(this);
         this.newWorkForm = this.newWorkForm.bind(this);
         this.newEduForm = this.newEduForm.bind(this);
         this.handleChangeWork = this.handleChangeWork.bind(this);
         this.handleChangeEdu = this.handleChangeEdu.bind(this);
         this.removeWorkItem = this.removeWorkItem.bind(this);
         this.removeEduItem = this.removeEduItem.bind(this);
+        this.clearAll = this.clearAll.bind(this);
+        this.loadExample = this.loadExample.bind(this);
     }
                 
     handleChangePersonalInfo(event) {
@@ -136,16 +135,63 @@ class App extends React.Component {
         })
     }
 
-    handleClearAll(event) {
+    clearAll(event) {
+        event.preventDefault();
         this.setState({     
+            numWork: 1,
+            numEducation: 1,
+            workExperience: [
+                { position: "",
+                organization: "",
+                city: "",
+                startDate: "",
+                endDate: "" }
+            ], 
+            educationExperience: [
+                {institution: "",
+                city: "",
+                qualifications: "",
+                major: "",
+                startDate: "",
+                endDate: "" }
+            ], 
             firstName: "",
             lastName: "",
             email: "",
-            phoneNumber: "",
-            numWork: 1,
-            numExperience: 1,
-            workExperience: [],
-            educationExperience: []
+            phoneNumber: ""
+        })
+    }
+
+    loadExample(event) {
+        event.preventDefault();
+        this.setState({     
+            firstName: "Nicole",
+            lastName: "Bell",
+            email: "nicole.bell@domain.com",
+            phoneNumber: "+25 12345678",
+            numWork: 2,
+            numEducation: 1,
+            workExperience: [{
+                position: "Junior Software Developer",
+                organization: "Googli",
+                city: "California",
+                startDate: "09/01/2012",
+                endDate: "05/12/2014"},
+                {
+                position: "Web Developer",
+                organization: "MyWebsite",
+                city: "San Francisco",
+                startDate: "09/01/2015",
+                endDate: "05/12/2017"}
+            ],
+            educationExperience: [
+                {institution: "University of Alma",
+                city: "California",
+                qualifications: "Bachelors",
+                major: "Information Systems",
+                startDate: "05/06/2008",
+                endDate: "01/12/2011"}
+            ]
         })
     }
 
@@ -213,7 +259,9 @@ class App extends React.Component {
                     workExperience= {this.state.workExperience}
                     educationExperience = {this.state.educationExperience}
                     className="preview" />
-
+                
+                <button onClick={this.clearAll}>Clear</button>
+                <button onClick={this.loadExample}>Load Example</button>
             </div>
         </main>
     )}
