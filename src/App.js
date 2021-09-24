@@ -1,8 +1,6 @@
-//import { render } from '@testing-library/react';
-import React from "react"
-import Preview from "./components/Preview";
+import React from "react";
 import uniqid from "uniqid";
-import WorkForm from "./components/WorkForm";
+import Preview from "./components/Preview"
 import "./App.css";
 
 
@@ -10,15 +8,37 @@ class App extends React.Component {
     constructor() {
         super() 
         this.state = {
-            workExperience: [], // Array of objects which encapsulates work experience details.
-            educationExperience: [], // Array of objects which encapsulates education experience details.
+            numWork: 1,
+            numEducation: 1,
+            workExperience: [
+                { position: "",
+                organization: "",
+                city: "",
+                startDate: "",
+                endDate: "" }
+            ], // Array of objects which encapsulates work experience details.
+            educationExperience: [
+                {institution: "",
+                city: "",
+                qualifications: "",
+                major: "",
+                startDate: "",
+                endDate: "" }
+            ], // Array of objects which encapsulates education experience details.
             firstName: "",
             lastName: "",
             email: "",
             phoneNumber: ""
         }
         this.handleChangePersonalInfo = this.handleChangePersonalInfo.bind(this);
-        this.handleClearAll = this.handleClearAll.bind(this);
+        this.newWorkForm = this.newWorkForm.bind(this);
+        this.newEduForm = this.newEduForm.bind(this);
+        this.handleChangeWork = this.handleChangeWork.bind(this);
+        this.handleChangeEdu = this.handleChangeEdu.bind(this);
+        this.removeWorkItem = this.removeWorkItem.bind(this);
+        this.removeEduItem = this.removeEduItem.bind(this);
+        this.clearAll = this.clearAll.bind(this);
+        this.loadExample = this.loadExample.bind(this);
     }
                 
     handleChangePersonalInfo(event) {
@@ -29,25 +49,149 @@ class App extends React.Component {
         })
     }
 
-    /*handleChangeWorkExperience(event) {
+    newWorkForm(event) {
         event.preventDefault();
         this.setState(prevState => {
-            const updatedArray = [...prevState.workExperience];
-            updatedArray.push(workItem);
+            const newWorkTemplate = { position: "", organization: "", city: "", startDate: "", endDate: "" }
+            const updatedWorkExperience = [...prevState.workExperience]
+            updatedWorkExperience.push(newWorkTemplate)
+            return ({
+                workExperience: updatedWorkExperience,
+                numWork: prevState.numWork + 1
+            })
+        })
+    }
+
+    newEduForm(event) {
+        event.preventDefault();
+        this.setState(prevState => {
+            const newEduTemplate = {
+                institution: "",
+                city: "",
+                qualifications: "",
+                major: "",
+                startDate: "",
+                endDate: "" }
+            const updatedEducationExperience = [...prevState.educationExperience]
+            updatedEducationExperience.push(newEduTemplate)
+            return ({
+                educationExperience: updatedEducationExperience,
+                numEducation: prevState.numEducation + 1
+            })
+        })
+    }
+
+    removeWorkItem(event) {
+        event.preventDefault();
+        const {id} = event.target;
+        this.setState(prevState => {
+            let updatedWorkExperience = [...prevState.workExperience];
+            updatedWorkExperience.splice(id, 1)
             return {
-                workExperience: updatedArray
+                workExperience: updatedWorkExperience,
+                numWork: prevState.numWork - 1
             }
         })
-    }*/
+    }
 
-    handleClearAll(event) {
+    removeEduItem(event) {
+        event.preventDefault();
+        const {id} = event.target;
+        this.setState(prevState => {
+            let updatedEduExperience = [...prevState.educationExperience];
+            updatedEduExperience.splice(id, 1)
+            return {
+                educationExperience: updatedEduExperience,
+                numEducation: prevState.numEducation - 1
+            }
+        })
+    }
+
+    handleChangeWork(event) {
+        const {name, value, id} = event.target;
+        this.setState(prevState => {
+            const updatedWorkExperience = [...prevState.workExperience];
+            updatedWorkExperience[id] = {
+                ...updatedWorkExperience[id],
+                [name] : value
+            }
+            return {
+                workExperience: updatedWorkExperience
+            }
+        })
+    }
+
+    handleChangeEdu(event) {
+        const {name, value, id} = event.target;
+        this.setState(prevState => {
+            const updatedEducationExperience = [...prevState.educationExperience];
+            updatedEducationExperience[id] = {
+                ...updatedEducationExperience[id],
+                [name] : value
+            }
+            return {
+                educationExperience: updatedEducationExperience
+            }
+        })
+    }
+
+    clearAll(event) {
+        event.preventDefault();
         this.setState({     
+            numWork: 1,
+            numEducation: 1,
+            workExperience: [
+                { position: "",
+                organization: "",
+                city: "",
+                startDate: "",
+                endDate: "" }
+            ], 
+            educationExperience: [
+                {institution: "",
+                city: "",
+                qualifications: "",
+                major: "",
+                startDate: "",
+                endDate: "" }
+            ], 
             firstName: "",
             lastName: "",
             email: "",
-            phoneNumber: "",
-            workExperience: [],
-            educationExperience: []
+            phoneNumber: ""
+        })
+    }
+
+    loadExample(event) {
+        event.preventDefault();
+        this.setState({     
+            firstName: "Nicole",
+            lastName: "Bell",
+            email: "nicole.bell@domain.com",
+            phoneNumber: "+25 12345678",
+            numWork: 2,
+            numEducation: 1,
+            workExperience: [{
+                position: "Junior Software Developer",
+                organization: "Googli",
+                city: "California",
+                startDate: "09/01/2012",
+                endDate: "05/12/2014"},
+                {
+                position: "Web Developer",
+                organization: "MyWebsite",
+                city: "San Francisco",
+                startDate: "09/01/2015",
+                endDate: "05/12/2017"}
+            ],
+            educationExperience: [
+                {institution: "University of Alma",
+                city: "California",
+                qualifications: "Bachelors",
+                major: "Information Systems",
+                startDate: "05/06/2008",
+                endDate: "01/12/2011"}
+            ]
         })
     }
 
@@ -66,24 +210,58 @@ class App extends React.Component {
                     
                     <div id="Work" className="InputComponent">
                         <h2> Work Experience </h2>
-                        {Array.from({length: this.state.workExperience.length + 1})
-                                .map(index => <WorkForm id={index} />)}
+                        {[...Array(this.state.numWork).keys()]
+                                .map(index => { 
+                                    return (
+                                       <div>
+                                            <form id="workform">
+                                                <input type="text" id={index} name="position" value={this.state.workExperience[index].position} onChange={this.handleChangeWork} placeholder="Position" ></input> <br />
+                                                <input type="text" id={index} name="organization" value={this.state.workExperience[index].organization} onChange={this.handleChangeWork} placeholder="Organization" ></input> <br />
+                                                <input type="text" id={index} name="city" value={this.state.workExperience[index].city} onChange={this.handleChangeWork} placeholder="City"></input> <br />
+                                                <input type="text" id={index} name="startDate" value={this.state.workExperience[index].startDate} onChange={this.handleChangeWork} placeholder="Start Date" ></input> <br />
+                                                <input type="text" id={index} name="endDate" value={this.state.workExperience[index].endDate} onChange={this.handleChangeWork} placeholder="End Date"></input> <br />
+                                            </form>
+                                            <button id={index} onClick={this.removeWorkItem}> Remove </button>
+                                        </div>
+                                    )
+                                })}
+                        <button onClick={this.newWorkForm}> Add </button>
+                    </div>
 
-                        <button hand> Add </button>
-
-                       
+                    <div id="Education" className="InputComponent">
+                        <h2> Education Experience </h2>
+                        {[...Array(this.state.numEducation).keys()]
+                                .map(index => { 
+                                    return (
+                                        <div>
+                                            <form id="eduform">
+                                                <input type="text" id={index} name="institution" value={this.state.educationExperience[index].institution} onChange={this.handleChangeEdu} placeholder="Institution" ></input> <br />
+                                                <input type="text" id={index} name="city" value={this.state.educationExperience[index].city} onChange={this.handleChangeEdu} placeholder="City" ></input> <br />
+                                                <input type="text" id={index} name="qualifications" value={this.state.educationExperience[index].qualifications} onChange={this.handleChangeEdu} placeholder="Qualifications"></input> <br />
+                                                <input type="text" id={index} name="major" value={this.state.educationExperience[index].major} onChange={this.handleChangeEdu} placeholder="Major"></input> <br />
+                                                <input type="text" id={index} name="startDate" value={this.state.educationExperience[index].startDate} onChange={this.handleChangeEdu} placeholder="Start Date" ></input> <br />
+                                                <input type="text" id={index} name="endDate" value={this.state.educationExperience[index].endDate} onChange={this.handleChangeEdu} placeholder="End Date"></input> <br />
+                                            </form>
+                                            <button id={index} onClick={this.removeEduItem}> Remove </button>
+                                        </div>
+                                    )
+                                })}
+                        <button onClick={this.newEduForm}> Add </button>
                     </div>
 
                 <Preview 
-                key={ uniqid() } // Component only rerenders if key ends up being different.
-                personalInfo={{
+                    key={ uniqid() } // Component only rerenders if key ends up being different.
+                    personalInfo={{
                     firstName:this.state.firstName, 
                     lastName: this.state.lastName, 
                     email: this.state.email, 
-                    phoneNumber: this.state.phoneNumber}} 
-                className="preview" />
-
-                <button onClick={this.handleClearAll}>Clear All</button>
+                    phoneNumber: this.state.phoneNumber}}
+                    workExperience= {this.state.workExperience}
+                    educationExperience = {this.state.educationExperience}
+                    className="preview" />
+                
+                <button onClick={this.clearAll}>Clear</button>
+                <button onClick={this.loadExample}>Load Example</button>
             </div>
         </main>
     )}
