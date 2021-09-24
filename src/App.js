@@ -197,11 +197,11 @@ class App extends React.Component {
 
     render() {
         return (
-            <main>
+            <div id="page">
+                <main>
                 <div id="Input">
-                    <header> CV Builder </header>
                     <div id="Personal" className="InputComponent">
-                        <h2> Personal Info </h2>
+                        <p className="subheader"> Personal Info </p>
                         <input type="text" name="firstName" value={this.state.firstName} onChange={this.handleChangePersonalInfo} placeholder="First Name"></input> <br />
                         <input type="text" name="lastName" value={this.state.lastName} onChange={this.handleChangePersonalInfo} placeholder="Last Name"></input> <br />
                         <input type="text" name="email" value={this.state.email} onChange={this.handleChangePersonalInfo} placeholder="Email"></input> <br />
@@ -209,7 +209,7 @@ class App extends React.Component {
                     </div>
                     
                     <div id="Work" className="InputComponent">
-                        <h2> Work Experience </h2>
+                        <p className="subheader"> Work Experience </p>
                         {[...Array(this.state.numWork).keys()]
                                 .map(index => { 
                                     return (
@@ -218,10 +218,12 @@ class App extends React.Component {
                                                 <input type="text" id={index} name="position" value={this.state.workExperience[index].position} onChange={this.handleChangeWork} placeholder="Position" ></input> <br />
                                                 <input type="text" id={index} name="organization" value={this.state.workExperience[index].organization} onChange={this.handleChangeWork} placeholder="Organization" ></input> <br />
                                                 <input type="text" id={index} name="city" value={this.state.workExperience[index].city} onChange={this.handleChangeWork} placeholder="City"></input> <br />
+                                                <div className="duration">
                                                 <input type="text" id={index} name="startDate" value={this.state.workExperience[index].startDate} onChange={this.handleChangeWork} placeholder="Start Date" ></input> <br />
                                                 <input type="text" id={index} name="endDate" value={this.state.workExperience[index].endDate} onChange={this.handleChangeWork} placeholder="End Date"></input> <br />
+                                                </div>
                                             </form>
-                                            <button id={index} onClick={this.removeWorkItem}> Remove </button>
+                                            <button className="remove" id={index} onClick={this.removeWorkItem}> Remove </button>
                                         </div>
                                     )
                                 })}
@@ -229,7 +231,7 @@ class App extends React.Component {
                     </div>
 
                     <div id="Education" className="InputComponent">
-                        <h2> Education Experience </h2>
+                        <p className="subheader"> Education Experience </p>
                         {[...Array(this.state.numEducation).keys()]
                                 .map(index => { 
                                     return (
@@ -239,15 +241,21 @@ class App extends React.Component {
                                                 <input type="text" id={index} name="city" value={this.state.educationExperience[index].city} onChange={this.handleChangeEdu} placeholder="City" ></input> <br />
                                                 <input type="text" id={index} name="qualifications" value={this.state.educationExperience[index].qualifications} onChange={this.handleChangeEdu} placeholder="Qualifications"></input> <br />
                                                 <input type="text" id={index} name="major" value={this.state.educationExperience[index].major} onChange={this.handleChangeEdu} placeholder="Major"></input> <br />
+                                                <div className="duration">
                                                 <input type="text" id={index} name="startDate" value={this.state.educationExperience[index].startDate} onChange={this.handleChangeEdu} placeholder="Start Date" ></input> <br />
                                                 <input type="text" id={index} name="endDate" value={this.state.educationExperience[index].endDate} onChange={this.handleChangeEdu} placeholder="End Date"></input> <br />
+                                                </div>
                                             </form>
-                                            <button id={index} onClick={this.removeEduItem}> Remove </button>
+                                            <button className="remove" id={index} onClick={this.removeEduItem}> Remove </button>
                                         </div>
                                     )
                                 })}
                         <button onClick={this.newEduForm}> Add </button>
                     </div>
+
+                <button className="globalbutton" id="clear" onClick={this.clearAll}>Clear</button>
+                <button className="globalbutton" id="load" onClick={this.loadExample}>Load Example</button>
+                <button className="globalbutton" id="generate" onClick={null}> Generate PDF </button>
 
                 <Preview 
                     key={ uniqid() } // Component only rerenders if key ends up being different.
@@ -260,10 +268,9 @@ class App extends React.Component {
                     educationExperience = {this.state.educationExperience}
                     className="preview" />
                 
-                <button onClick={this.clearAll}>Clear</button>
-                <button onClick={this.loadExample}>Load Example</button>
             </div>
-        </main>
+            </main>
+        </div>
     )}
 }
 
