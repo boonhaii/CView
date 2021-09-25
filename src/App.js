@@ -2,6 +2,7 @@ import React from "react";
 import uniqid from "uniqid";
 import Preview from "./components/Preview"
 import "./App.css";
+import "./print.css";
 
 
 class App extends React.Component {
@@ -41,6 +42,7 @@ class App extends React.Component {
         this.removeEduItem = this.removeEduItem.bind(this);
         this.clearAll = this.clearAll.bind(this);
         this.loadExample = this.loadExample.bind(this);
+        this.generatepdf = this.generatepdf.bind(this);
     }
                 
     handleChangePersonalInfo(event) {
@@ -202,7 +204,7 @@ class App extends React.Component {
                 endDate: "Dec 2014",
                 description:"Led a team of 9 engineers to designa nd implement an error analaysis that reduced the development to production time for the mobile department by 35%\n"
                 + "Designed a new messaging platform for users in a team of 3, with more than 1000 daily users\n"
-                + "Solved many bugs :)"}
+                + "Solved many bugs :)"},
             ],
             educationExperience: [
                 {institution: "University of Alma",
@@ -223,6 +225,11 @@ class App extends React.Component {
                 description:"Grade Point Average: 3.9 (Out of 4.0)"}
             ]
         })
+    }
+
+    generatepdf(event) {
+        event.preventDefault();
+        return window.print();
     }
 
     render() {
@@ -282,9 +289,9 @@ class App extends React.Component {
                 <br />
                 <button className="globalbutton" id="clear" onClick={this.clearAll}>Clear</button>
                 <button className="globalbutton" id="load" onClick={this.loadExample}>Load Example</button>
-                <button className="globalbutton" id="generate" onClick={null}> Generate PDF </button>
-                </div>
+                <button className="globalbutton" id="generate" onClick={this.generatepdf}> Generate PDF </button>
                 <br />
+                </div>
                 
                 <div id="preview">
                     <Preview 

@@ -1,0 +1,112 @@
+@media print {
+    title {
+        display: none;
+    }
+
+    #title {
+        display:none;
+    }
+
+    #page {
+        background-color: white;
+    }
+    
+    #Input {
+        display: none;
+    }
+
+#preview {
+    background-color: white;
+    margin: auto;
+    width: 95%;
+    height: calc(97vw * 1.4142);
+    line-height: 0px;
+}
+
+.header {
+    background: white;
+    height: 20%;
+    padding: 2.5% 0% 2.5% 5%;
+}
+
+.header #displayPersonal #name {
+    font-size: 40px;
+    font-weight: 400px;
+    padding-bottom: 2.5%;
+}
+
+#displayPersonal #name {
+    font-size: 40px;
+}
+
+.work {
+    padding-left: 5%;
+}
+
+#workItem {
+    width: 95%;
+    min-height: fit-content;
+    
+}
+
+#workItem #period {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: right;
+    float: right;
+    margin-right: 0;
+    line-height: 16px;
+}
+
+#workItem .details{
+    line-height: 0px;
+    display: inline-block;
+    width: 75%;
+    font-size: 16px;
+}
+
+#workItem .description {
+    font-size: 14px;
+    line-height: 14px;
+    padding-left: 2.5%;
+}
+
+#educationItem {
+    width: 95%;
+    vertical-align: top;
+}
+
+#educationItem #period {
+    font-size:16px;
+    font-weight: bold;
+    text-align: right;
+    float: right;
+    margin-right: 0;
+    line-height: 16px;
+    
+}
+
+#educationItem .details{
+    line-height: 0px;
+    display: inline-block;
+    width: 75%;
+    font-size: 16px;
+    vertical-align: top;
+}
+
+#educationItem .description{
+    font-size: 14px;
+    line-height: 14px;
+    padding-left: 2.5%;
+}
+
+.education {
+    padding-left: 5%;
+    padding-bottom: 1%;
+}
+
+hr {
+    display: inline-block;
+    width: 95%;
+}
+}
