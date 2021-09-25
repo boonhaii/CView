@@ -8,22 +8,32 @@ class WorkItem extends React.Component {
             organization: props.organization,
             city: props.city,
             startDate: props.startDate,
-            endDate: props.endDate
+            endDate: props.endDate,
+            description: props.description
         }
     }
 
     render() {
         return (
-           <div>
-            { this.state.organization !== "" && this.state.city !== ""
-                ? <p> {this.state.organization}, {this.state.city} </p>
-                : <p> {this.state.organization} {this.state.city} </p> }
-            { this.state.position !== "" 
-                ? <p> Position: {this.state.position} </p>
-                : null }
-            { this.state.startDate !== "" && this.state.endDate !== ""
-                ? <p> From {this.state.startDate} to {this.state.endDate} </p>
-                : null }
+           <div id="workItem">
+                <div className="details">
+                    { this.state.organization !== "" && this.state.city !== ""
+                        ? <p id="organization"> <b>{this.state.organization}, {this.state.city}</b></p>
+                        : <p id="organization"> <b>{this.state.organization} {this.state.city}</b></p> }
+                    { this.state.position !== "" 
+                        ? <p id="position"> <i>{this.state.position}</i> </p>
+                        : null }
+                    { this.state.description !== ""
+                        ? <div> {this.state.description.split("\n").map(item => {
+                            return (
+                                <p className="description">- {item}</p>
+                            )
+                        })} </div>
+                        : null}
+                </div>
+                { this.state.startDate !== "" && this.state.endDate !== ""
+                    ? <p id="period"> {this.state.startDate} - {this.state.endDate} </p>
+                    : null }
             </div>
         )
     }

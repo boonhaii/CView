@@ -12,7 +12,7 @@ class DisplayEducation extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="displayEducation">
                {this.state.educationExperience.map(item => {
                 return (
                 <EducationItem   
@@ -22,7 +22,8 @@ class DisplayEducation extends React.Component {
                     qualifications={item.qualifications}
                     major={item.major}
                     startDate= {item.startDate}
-                    endDate= {item.endDate} /> )})}
+                    endDate= {item.endDate}
+                    description={item.description}  /> )})}
             </div>
         )
     }

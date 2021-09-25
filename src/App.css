@@ -1,18 +1,16 @@
 #root {
     overflow: scroll;
-    height:fit-content;
-}
-
-#page {
+    width: 101%;
     background-color: #CCCCCC;
-    font-size:medium;
+    padding-bottom: 1%;
+    font-family: "Nunito"
 }
 
 #title {
     text-align: center;
     font-size:5em;
     background-color: #333333;
-    color: whitesmoke;
+    color: rgb(230, 225, 225);
     font-family: "Jua";
 }
 
@@ -23,7 +21,7 @@
 }
 
 button {
-    margin: 1%;
+    margin: 0.5%;
     width: 93%;
     height: 30px;
     font-size: 16px;
@@ -37,20 +35,19 @@ button {
     line-height: 0px;
 }
 
-main {
+#Input {
     font-family: "Nunito";
     width: 60%;
     margin: auto;
     background-color: whitesmoke;
     height: 100%;
+    padding-bottom: 0.25%;
 }
-
-
 
 .InputComponent {
     text-align: center;
     margin: auto;;
-    padding: 0.5% 2% 0.5% 2%;
+    padding: 0.5% 2% 0% 2%;
     margin: 0.5%;
     border-radius: 10px;
 }
@@ -66,9 +63,22 @@ input {
     background-color: white;
     width: 90%;
     height: 40px;
-    margin: 0% 0.5% 2% 0.5%;
-    font-size: 16px;
+    margin: 0% 0.5% 0.5% 0.5%;
+    font-size: 18px;
     padding: 0.5% 0% 0.5% 2.5%;
+    font-family:"Nunito";
+}
+
+textarea {
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    width: 90%;
+    height: 100px;
+    margin: 0% 0.5% 0.5% 0.5%;
+    padding: 1.5% 0% 0.5% 2.5%;
+    font-family: "Nunito";
+    font-size: 18px;
 }
 
 
@@ -100,4 +110,102 @@ input {
     color: #333333;
     font-size: 1.1rem;
     font-family: "Nunito";
+}
+
+#preview {
+    background-color: white;
+    margin: auto;
+    width: 55vw;
+    height: calc(55vw * 1.412);
+    border: black solid 1px;
+    border-style: double;
+    line-height: 0px;
+    padding: 1% 1% 1% 1%;
+}
+
+.header {
+    background: white;
+    height: 20%;
+    padding: 2.5% 0% 2.5% 5%;
+}
+
+.header #displayPersonal #name {
+    font-size: 40px;
+    font-weight: 400px;
+    padding-bottom: 2.5%;
+}
+
+#displayPersonal #name {
+    font-size: 40px;
+}
+
+.work {
+    padding-left: 5%;
+}
+
+#workItem {
+    width: 95%;
+    min-height: fit-content;
+    
+}
+
+#workItem #period {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: right;
+    float: right;
+    margin-right: 0;
+    line-height: 16px;
+}
+
+#workItem .details{
+    line-height: 0px;
+    display: inline-block;
+    width: 75%;
+    font-size: 16px;
+}
+
+#workItem .description {
+    font-size: 14px;
+    line-height: 14px;
+    padding-left: 2.5%;
+}
+
+#educationItem {
+    width: 95%;
+    vertical-align: top;
+}
+
+#educationItem #period {
+    font-size:16px;
+    font-weight: bold;
+    text-align: right;
+    float: right;
+    margin-right: 0;
+    line-height: 16px;
+    
+}
+
+#educationItem .details{
+    line-height: 0px;
+    display: inline-block;
+    width: 75%;
+    font-size: 16px;
+    vertical-align: top;
+}
+
+#educationItem .description{
+    font-size: 14px;
+    line-height: 14px;
+    padding-left: 2.5%;
+}
+
+.education {
+    padding-left: 5%;
+    padding-bottom: 1%;
+}
+
+hr {
+    display: inline-block;
+    width: 95%;
 }

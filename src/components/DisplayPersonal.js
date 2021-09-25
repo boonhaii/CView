@@ -13,11 +13,11 @@ class DisplayPersonal extends React.Component {
 
     render() {
         return (    
-           <div> 
-               <h2>{this.state.firstName} {this.state.lastName} </h2>
+           <div id="displayPersonal"> 
+               <h1 id="name">{this.state.firstName} {this.state.lastName} </h1>
                 {this.state.email !== "" && this.state.phoneNumber !== ""
-                    ? <p> {this.state.email} | {this.state.phoneNumber} </p>
-                    : <p> {this.state.email} {this.state.phoneNumber}</p>}
+                    ? <p id="contact"> {this.state.email} | {this.state.phoneNumber} </p>
+                    : <p id="contact"> {this.state.email} {this.state.phoneNumber}</p>}
             </div>
         
         )

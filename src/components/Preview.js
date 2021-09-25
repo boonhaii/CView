@@ -22,10 +22,23 @@ class Preview extends React.Component {
                     ? <DisplayPersonal personalInfo={this.state.personalInfo} /> 
                     : null }
                 </div>
+                
                 <div className="work">
+                    {this.state.workExperience[0].organization !== "" 
+                        ? <div> 
+                            <hr />
+                            <h2><u>Work and Internship Experiences</u></h2>
+                          </div>
+                        : null}
                     <DisplayWork key={uniqid()} workExperience={this.state.workExperience} />
                 </div>
                 <div className="education">
+                    {this.state.educationExperience[0].institution !== "" 
+                        ? <div> 
+                            <hr />
+                            <h2><u>Education</u></h2>
+                          </div>
+                        : null}
                     <DisplayEducation key={uniqid()} educationExperience={this.state.educationExperience} />
                 </div>
             </div>
