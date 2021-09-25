@@ -1,6 +1,6 @@
-# CView (C-Review)
+# CView
 ## Introduction
-CView is a CV preview generator web application created as part of TheOdinProject syallabus, as practice for ReactJS.
+CView (pronounced See-V-View) is a CV preview generator web application created as part of TheOdinProject syallabus, as practice for ReactJS.
 This project is created using HTML, CSS and ReactJS, using class based components.
 
 ## Using the Application
