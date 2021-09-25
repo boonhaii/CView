@@ -12,7 +12,7 @@ class DisplayWork extends React.Component {
     
     render() {
         return (
-            <div>
+            <div id="displayWork">
                {this.state.workExperience.map(item => {
                 return (
                 <WorkItem   
@@ -21,7 +21,8 @@ class DisplayWork extends React.Component {
                     organization={item.organization}
                     city= {item.city}
                     startDate= {item.startDate}
-                    endDate= {item.endDate} /> )})}
+                    endDate= {item.endDate}
+                    description={item.description} /> )})}
             </div>
         )
     }

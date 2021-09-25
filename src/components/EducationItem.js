@@ -9,23 +9,33 @@ class EducationItem extends React.Component {
             qualifications: props.qualifications,
             major: props.major,
             startDate: props.startDate,
-            endDate: props.endDate
+            endDate: props.endDate,
+            description: props.description
         }
     }
 
     render() {
         return (
-            <div>
+            <div id="educationItem">
+                <div className="details">
                 {this.state.institution !== "" && this.state.city !== ""
-                    ? <p> Institution: {this.state.institution}, {this.state.city} </p>
+                    ? <p id="institution"> <b>{this.state.institution}, {this.state.city} </b></p>
                     : this.state.city !== ""
-                        ? <p> {this.state.institution} </p>
+                        ? <p id="institution"> <b>{this.state.institution} </b> </p>
                         : null }
                 {this.state.qualifications!== "" && this.state.major !== ""
-                    ?  <p> {this.state.qualifications} in {this.state.major} </p>
-                    :  <p> {this.state.qualifications} </p> }
+                    ?  <p> <i>{this.state.qualifications} in {this.state.major} </i> </p>
+                    :  <p> <i> {this.state.qualifications} </i> </p> }
+                {this.state.description !== ""
+                    ? <div> {this.state.description.split("\n").map(item => {
+                        return (
+                            <p className="description">- {item}</p>
+                        )
+                    })} </div>
+                    : null}
+                 </div>
                 {this.state.startDate!== "" && this.state.endDate !== ""
-                    ? <p> From {this.state.startDate} to {this.state.endDate} </p>
+                    ? <p id="period"> {this.state.startDate} - {this.state.endDate} </p>
                     : null }
             </div>
         )
